@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>30 lat Złotej Setki Dziennika Wschodniego</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="gold-background"></div>
+
+    <main id="app">
+        
+        <!-- WIDOK 1: Powitanie -->
+        <section id="view-welcome" class="view active">
+            <header>
+                <img src="dziennikpl.png" alt="Dziennik Wschodni Logo" class="logo-large clickable-logo">
+            </header>
+            
+            <div class="content-box">
+                <h1>30 lat wspólnej historii</h1>
+                <p>
+                    Od trzech dekad z dumą obserwujemy i wyróżniamy sukcesy najlepszych przedsiębiorstw w naszym regionie. 
+                    Składamy Państwu najserdeczniejsze gratulacje za dotychczasowe osiągnięcia oraz wybitny wkład w gospodarczy rozwój Lubelszczyzny. 
+                    Niech ten wyjątkowy jubileusz będzie inspiracją do podejmowania kolejnych, odważnych wyzwań biznesowych.
+                    Życzymy pomyślności i nieustannego rozwoju na kolejne lata!
+                </p>
+                <p class="signature">Redakcja Dziennika Wschodniego</p>
+                <button id="btn-start" class="gold-btn">ODKRYJ 30 LAT HISTORII</button>
+            </div>
+            
+            <div class="copyright-absolute">&copy; 2026 Dziennik Wschodni</div>
+        </section>
+
+        <!-- WIDOK 2: Galeria (100 zdjęć) -->
+        <section id="view-gallery" class="view hidden">
+            <header>
+                <img src="dziennikpl.png" alt="Dziennik Wschodni Logo" class="logo-small clickable-logo">
+            </header>
+            
+            <div class="gallery-container">
+                <div class="nav-left-container">
+                    <button id="nav-prev" class="nav-btn invisible" aria-label="Poprzednie zdjęcie">&#10094;</button>
+                </div>
+                
+                <div class="frame-wrapper">
+                    <div class="image-frame">
+                        <img id="gallery-image" src="img/ZS_001.jpg" alt="Złota Setka - Archiwum">
+                    </div>
+                    <div class="image-counter">
+                        <span id="current-image-num">1</span> / 100
+                    </div>
+                    <div class="skip-link" id="btn-skip">Przejdź do podsumowania &raquo;</div>
+                </div>
+                
+                <div class="nav-right-container">
+                    <button id="nav-next" class="nav-btn" aria-label="Następne zdjęcie">&#10095;</button>
+                </div>
+            </div>
+
+            <footer>
+                <p class="footer-text">
+                    <span class="footer-line-1">XXX ZŁOTA SETKA DZIENNIKA WSCHODNIEGO</span>
+                    <span class="footer-line-2">RANKING NAJLEPSZYCH FIRM LUBELSZCZYZNY</span>
+                </p>
+            </footer>
+            
+            <div class="copyright-absolute">&copy; 2026 Dziennik Wschodni</div>
+        </section>
+
+        <!-- WIDOK 3: Pożegnanie -->
+        <section id="view-farewell" class="view hidden">
+            <header>
+                <img src="dziennikpl.png" alt="Dziennik Wschodni Logo" class="logo-large clickable-logo">
+            </header>
+            
+            <div class="content-box">
+                <h1>Biznes, który inspiruje</h1>
+                <p>
+                    Dziękujemy za wspólną podróż przez archiwa Złotej Setki. 
+                    To dzięki Waszym osiągnięciom i determinacji gospodarka Lubelszczyzny nieustannie rośnie w siłę.
+                    Życzymy pomyślności w realizacji nowych projektów, intratnych kontraktów oraz kolejnych spektakularnych triumfów.
+                    Z niecierpliwością czekamy na spotkanie na 31. edycji!
+                </p>
+                <p class="signature">Redakcja Dziennika Wschodniego</p>
+                <div class="skip-link" id="btn-restart">Wróć do początku &raquo;</div>
+            </div>
+            
+            <div class="copyright-absolute">&copy; 2026 Dziennik Wschodni</div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
