@@ -264,6 +264,13 @@ footer {
     letter-spacing: 2px;
 }
 
+.footer-line-3 {
+    display: block; 
+    font-size: 0.55rem; 
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
 .copyright-absolute {
     position: absolute;
     bottom: 10px;
