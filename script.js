@@ -1,12 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- KONFIGURACJA ---
     const TOTAL_IMAGES = 300;
     const IMAGE_PATH_PREFIX = 'img300/ZS_'; 
     const IMAGE_EXTENSION = '.jpg';
     let currentIndex = 1;
     let isHighContrast = localStorage.getItem('highContrast') === 'true';
 
-    // --- DOM ELEMENTS ---
     const viewWelcome = document.getElementById('view-welcome');
     const viewGallery = document.getElementById('view-gallery');
     const viewFarewell = document.getElementById('view-farewell');
@@ -36,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxImg = document.getElementById('lightbox-image');
     const lightboxClose = document.getElementById('lightbox-close');
 
-    // --- BLOKADA SYSTEMOWEGO PINCH-TO-ZOOM NA IOS ---
     document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function (event) {
@@ -46,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, false);
 
 
-    // --- KONTRAST ---
     const applyContrast = () => {
         if (isHighContrast) document.body.classList.add('high-contrast');
         else document.body.classList.remove('high-contrast');
@@ -60,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // --- ROUTING I ZMIANA WIDOKÓW ---
     const switchView = (targetView) => {
         const currentActive = document.querySelector('.view.active');
         if (currentActive === targetView) return; 
@@ -114,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('hashchange', handleRouting);
 
 
-    // --- GENEROWANIE SIATKI Z LAZY LOADING ---
     let gridGenerated = false;
     const generateGrid = () => {
         if (gridGenerated) return; 
@@ -137,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    // --- NAWIGACJA PRZYCISKAMI MYSZKI/DOTYKIEM ---
     btnStart.addEventListener('click', () => { window.location.hash = '#gallery/1'; });
     
     [btnShowGrid, btnShowGridLandscape].forEach(btn => {
@@ -176,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // --- OBSŁUGA KLAWIATURY NA DESKTOPIE ---
     document.addEventListener('keydown', (e) => {
         const activeView = document.querySelector('.view.active');
         const isGallery = activeView === viewGallery;
@@ -201,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // --- AKTUALIZACJA ZDJĘCIA ---
     const updateGallery = () => {
         const formattedIndex = currentIndex.toString().padStart(3, '0');
         
@@ -228,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    // --- MECHANIKA LUPY I LIGHTBOXA ---
     let isTouchDevice = false;
     
     zoomableFrame.addEventListener('touchstart', (e) => {
@@ -271,7 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // --- INICJALIZACJA ---
     if (window.location.hash && window.location.hash !== '#welcome') {
         viewWelcome.classList.remove('active');
         viewWelcome.classList.add('hidden');
