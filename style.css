@@ -11,7 +11,7 @@ body.high-contrast {
     --gold-dark: #FFD700;
     --gold-light: #444444;
     --text-dark: #FFD700;
-    --bg-box: rgba(30, 30, 30, 0.85); 
+    --bg-box: rgba(30, 30, 30, 0.85);
 }
 
 body.high-contrast .gold-background {
@@ -25,7 +25,7 @@ body.high-contrast {
 
 body.high-contrast .content-box {
     border: 2px solid var(--gold-dark);
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.05); 
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.05);
 }
 
 body.high-contrast .copyright,
@@ -117,9 +117,18 @@ body.high-contrast .contrast-toggle { color: var(--gold-dark); opacity: 1; }
 .flex-view {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: flex-start; 
     align-items: center;
     padding: 4vh 20px;
+    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch;
+    gap: 3vh; 
+}
+
+.flex-view header, 
+.flex-view .content-box, 
+.flex-view footer {
+    flex-shrink: 0;
 }
 
 header { text-align: center; }
