@@ -6,7 +6,6 @@
     --bg-box: rgba(255, 255, 255, 0.85);
 }
 
-
 body.high-contrast {
     --gold-mid: #111111;
     --gold-dark: #FFD700;
@@ -16,7 +15,6 @@ body.high-contrast {
 }
 
 body.high-contrast .gold-background {
-
     background: linear-gradient(135deg, #050505, #1f1f1f, #0a0a0a, #2a2a2a, #000000);
     background-size: 400% 400%;
 }
