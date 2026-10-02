@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 1;
     let isHighContrast = localStorage.getItem('highContrast') === 'true';
 
-   
     const viewWelcome = document.getElementById('view-welcome');
     const viewGallery = document.getElementById('view-gallery');
     const viewFarewell = document.getElementById('view-farewell');
@@ -25,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const btnShowGrid = document.getElementById('btn-show-grid');
     const btnShowGridLandscape = document.getElementById('btn-show-grid-landscape');
+    const btnSkip = document.getElementById('btn-skip'); 
+    const btnSkipLandscape = document.getElementById('btn-skip-landscape'); 
     const btnSkipToEnd = document.getElementById('btn-skip-to-end'); 
     const btnRestart = document.getElementById('btn-restart'); 
     const btnContrast = document.getElementById('btn-contrast');
@@ -33,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxImg = document.getElementById('lightbox-image');
     const lightboxClose = document.getElementById('lightbox-close');
 
-    
     document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function (event) {
@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    
     const switchView = (targetView) => {
         const currentActive = document.querySelector('.view.active');
         if (currentActive === targetView) return; 
@@ -110,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('hashchange', handleRouting);
 
 
-   
     let gridGenerated = false;
     const generateGrid = () => {
         if (gridGenerated) return; 
@@ -133,14 +131,16 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-   
     btnStart.addEventListener('click', () => { window.location.hash = '#gallery/1'; });
     
     [btnShowGrid, btnShowGridLandscape].forEach(btn => {
         if(btn) btn.addEventListener('click', () => { window.location.hash = '#grid'; });
     });
     
+    if (btnSkip) btnSkip.addEventListener('click', () => { window.location.hash = '#farewell'; });
+    if (btnSkipLandscape) btnSkipLandscape.addEventListener('click', () => { window.location.hash = '#farewell'; });
     if (btnSkipToEnd) btnSkipToEnd.addEventListener('click', () => { window.location.hash = '#farewell'; });
+    
     if (btnRestart) btnRestart.addEventListener('click', () => { window.location.hash = '#welcome'; });
 
     allLogos.forEach(logo => {
@@ -173,7 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const isGallery = activeView === viewGallery;
         const isLightboxOpen = !lightbox.classList.contains('hidden');
 
-        // Reaguj tylko w galerii lub gdy włączone jest powiększenie
         if (isGallery || isLightboxOpen) {
             if (e.key === 'ArrowRight') {
                 if (currentIndex < TOTAL_IMAGES) {
@@ -193,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    
     const updateGallery = () => {
         const formattedIndex = currentIndex.toString().padStart(3, '0');
         
@@ -205,7 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
         imageCounterNum.textContent = currentIndex;
         landscapeCounterNum.textContent = currentIndex;
 
-        
         if (!lightbox.classList.contains('hidden')) {
             lightboxImg.src = galleryImage.src;
         }
@@ -221,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    
     let isTouchDevice = false;
     
     zoomableFrame.addEventListener('touchstart', (e) => {
@@ -264,7 +260,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-   
     if (window.location.hash && window.location.hash !== '#welcome') {
         viewWelcome.classList.remove('active');
         viewWelcome.classList.add('hidden');
