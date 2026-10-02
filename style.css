@@ -6,17 +6,15 @@
     --bg-box: rgba(255, 255, 255, 0.85);
 }
 
-/* Tryb wysokiego kontrastu - ELEGANCJA */
 body.high-contrast {
     --gold-mid: #111111;
     --gold-dark: #FFD700;
     --gold-light: #444444;
     --text-dark: #FFD700;
-    --bg-box: rgba(30, 30, 30, 0.85); /* Ciemnografitowe szkło zamiast czystej czerni */
+    --bg-box: rgba(30, 30, 30, 0.85); 
 }
 
 body.high-contrast .gold-background {
-    /* Animowane, ciemnografitowe tło */
     background: linear-gradient(135deg, #050505, #1f1f1f, #0a0a0a, #2a2a2a, #000000);
     background-size: 400% 400%;
 }
@@ -27,7 +25,7 @@ body.high-contrast {
 
 body.high-contrast .content-box {
     border: 2px solid var(--gold-dark);
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.05); /* Subtelna złota poświata */
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.05); 
 }
 
 body.high-contrast .copyright,
