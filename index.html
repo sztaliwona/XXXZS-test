@@ -19,13 +19,14 @@
 
     <main id="app">
         
+        <!-- WIDOK 1: Powitanie -->
         <section id="view-welcome" class="view active flex-view">
             <header>
                 <img src="dziennikpl.png" alt="Dziennik Wschodni Logo" class="logo-large clickable-logo">
             </header>
             
             <div class="content-box">
-               <h1>30 lat wspólnej historii</h1>
+                <h1>30 lat wspólnej historii</h1>
                 <p>
                     Od trzech dekad z dumą obserwujemy i wyróżniamy sukcesy najlepszych przedsiębiorstw w naszym regionie. 
                     Składamy Państwu najserdeczniejsze gratulacje za dotychczasowe osiągnięcia oraz wybitny wkład w gospodarczy rozwój Lubelszczyzny. 
@@ -41,6 +42,7 @@
             </footer>
         </section>
 
+        <!-- WIDOK 2: Galeria pojedyncza -->
         <section id="view-gallery" class="view hidden">
             <div class="landscape-sidebar landscape-left">
                 <img src="dziennikpl.png" alt="Dziennik Wschodni Logo" class="logo-landscape clickable-logo">
@@ -74,6 +76,7 @@
                         <span id="current-image-num">1</span> / 300
                     </div>
                     <button id="btn-show-grid" class="subtle-btn">ZOBACZ WSZYSTKIE ZDJĘCIA</button>
+                    <!-- Zwrócony przycisk (PION) -->
                     <div class="skip-link" id="btn-skip">Przejdź do podsumowania &raquo;</div>
                 </div>
             </div>
@@ -84,6 +87,7 @@
                 </div>
                 <div>
                     <button id="btn-show-grid-landscape" class="subtle-btn">ZOBACZ WSZYSTKIE ZDJĘCIA</button>
+                    <!-- Zwrócony przycisk (POZIOM) -->
                     <div class="skip-link" id="btn-skip-landscape" style="margin-top: 5px;">Przejdź do podsumowania &raquo;</div>
                 </div>
                 <div class="landscape-text">
@@ -102,6 +106,7 @@
             </footer>
         </section>
 
+        <!-- WIDOK 3: Siatka (Kafelki 300 zdjęć) -->
         <section id="view-grid" class="view hidden scrollable-view">
             <header>
                 <img src="dziennikpl.png" alt="Dziennik Wschodni Logo" class="logo-small clickable-logo">
@@ -116,6 +121,7 @@
             </footer>
         </section>
 
+        <!-- WIDOK 4: Pożegnanie -->
         <section id="view-farewell" class="view hidden flex-view">
             <header>
                 <img src="dziennikpl.png" alt="Dziennik Wschodni Logo" class="logo-large clickable-logo">
@@ -140,6 +146,7 @@
 
     </main>
 
+    <!-- LIGHTBOX (Powiększenie zdjęcia) -->
     <div id="lightbox" class="lightbox-overlay hidden">
         <button id="lightbox-close" class="lightbox-close" aria-label="Zamknij powiększenie">&times;</button>
         <img id="lightbox-image" src="" alt="Powiększenie">
