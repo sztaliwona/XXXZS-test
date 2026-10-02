@@ -11,10 +11,11 @@ body.high-contrast {
     --gold-dark: #FFD700;
     --gold-light: #444444;
     --text-dark: #FFD700;
-    --bg-box: rgba(30, 30, 30, 0.85);
+    --bg-box: rgba(30, 30, 30, 0.85); 
 }
 
 body.high-contrast .gold-background {
+  
     background: linear-gradient(135deg, #050505, #1f1f1f, #0a0a0a, #2a2a2a, #000000);
     background-size: 400% 400%;
 }
@@ -117,12 +118,12 @@ body.high-contrast .contrast-toggle { color: var(--gold-dark); opacity: 1; }
 .flex-view {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: center;
     padding: 4vh 20px;
-    overflow-y: auto; 
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    gap: 3vh; 
+    gap: 3vh;
 }
 
 .flex-view header, 
@@ -151,7 +152,7 @@ header { text-align: center; }
     text-align: center;
     max-width: 90%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    margin: auto 0; 
+    margin: 3vh 0;
 }
 
 h1 {
