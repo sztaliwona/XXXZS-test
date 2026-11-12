@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const TOTAL_IMAGES = 300;
+    const TOTAL_IMAGES = 324;
     const IMAGE_PATH_PREFIX = 'img300/ZS_'; 
     const IMAGE_EXTENSION = '.jpg';
     let currentIndex = 1;
     let isHighContrast = localStorage.getItem('highContrast') === 'true';
+    let isLightboxActive = false;
 
     const viewWelcome = document.getElementById('view-welcome');
     const viewGallery = document.getElementById('view-gallery');
@@ -33,10 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-image');
     const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev'); 
+    const lightboxNext = document.getElementById('lightbox-next'); 
 
-    document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
+    document.addEventListener('gesturestart', function(e) { 
+        if(!isLightboxActive) e.preventDefault(); 
+    });
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function (event) {
+        if(isLightboxActive) return; 
         let now = (new Date()).getTime();
         if (now - lastTouchEnd <= 300) { event.preventDefault(); }
         lastTouchEnd = now;
@@ -137,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if(btn) btn.addEventListener('click', () => { window.location.hash = '#grid'; });
     });
     
-    // Obsługa przycisków pomijania
     if (btnSkip) btnSkip.addEventListener('click', () => { window.location.hash = '#farewell'; });
     if (btnSkipLandscape) btnSkipLandscape.addEventListener('click', () => { window.location.hash = '#farewell'; });
     if (btnSkipToEnd) btnSkipToEnd.addEventListener('click', () => { window.location.hash = '#farewell'; });
@@ -216,6 +221,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (currentIndex === 1) navPrev.classList.add('invisible'); 
         else navPrev.classList.remove('invisible'); 
+
+        if (currentIndex === 1) lightboxPrev.classList.add('hidden-btn');
+        else lightboxPrev.classList.remove('hidden-btn');
+
+        if (currentIndex === TOTAL_IMAGES) lightboxNext.classList.add('hidden-btn');
+        else lightboxNext.classList.remove('hidden-btn');
     };
 
 
@@ -248,18 +259,80 @@ document.addEventListener("DOMContentLoaded", () => {
     const openLightbox = () => {
         lightboxImg.src = galleryImage.src;
         lightbox.classList.remove('hidden');
+        
+        isLightboxActive = true;
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+        }
     };
 
     const closeLightbox = () => {
         lightbox.classList.add('hidden');
         zoomOverlay.classList.remove('active-touch');
+        
+        isLightboxActive = false;
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+        }
     };
 
     lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if(e.target === lightbox) closeLightbox();
+
+    lightboxNext.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        if (currentIndex < TOTAL_IMAGES) {
+            window.location.hash = `#gallery/${currentIndex + 1}`;
+        } else if (currentIndex === TOTAL_IMAGES) {
+            window.location.hash = '#farewell';
+            closeLightbox();
+        }
     });
 
+    lightboxPrev.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        if (currentIndex > 1) {
+            window.location.hash = `#gallery/${currentIndex - 1}`;
+        }
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightbox.addEventListener('touchstart', e => {
+        if (e.target.closest('.lightbox-nav-btn')) return;
+        touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    lightbox.addEventListener('touchend', e => {
+        if (e.target.closest('.lightbox-nav-btn')) return;
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, {passive: true});
+
+    const handleSwipe = () => {
+        const swipeDistance = touchEndX - touchStartX;
+        
+        if (swipeDistance < -50) { 
+            if (currentIndex < TOTAL_IMAGES) {
+                window.location.hash = `#gallery/${currentIndex + 1}`;
+            } else if (currentIndex === TOTAL_IMAGES) {
+                window.location.hash = '#farewell';
+                closeLightbox();
+            }
+        } else if (swipeDistance > 50) { 
+            if (currentIndex > 1) {
+                window.location.hash = `#gallery/${currentIndex - 1}`;
+            }
+        }
+    };
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox && Math.abs(touchEndX - touchStartX) < 50) {
+            closeLightbox();
+        }
+    });
 
     if (window.location.hash && window.location.hash !== '#welcome') {
         viewWelcome.classList.remove('active');
